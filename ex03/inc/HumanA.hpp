@@ -6,7 +6,6 @@
 class HumanA 
 {
 private:
-
 	std::string _name;
 	Weapon& _weapon;
 	
