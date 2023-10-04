@@ -1,4 +1,4 @@
-NAME = zombie
+NAME = zombieHorde
 SRC = $(addprefix $(DIR_SRC), main.cpp Zombie.cpp zombieHorde.cpp)
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 DEPFLAGS = -MMD -MP
