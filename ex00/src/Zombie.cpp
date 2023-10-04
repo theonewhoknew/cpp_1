@@ -1,4 +1,4 @@
-#include "Zombie.hpp"
+#include "../inc/Zombie.hpp"
 #include <string>
 #include <iostream>
 
@@ -20,4 +20,9 @@ void Zombie::announce(void)
 std::string Zombie::getName(void)
 {
 	return (this->_name);
+}
+
+void Zombie::setName(std::string name)
+{
+	this->_name = name;
 }
