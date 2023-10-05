@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "replace.hpp"
+#include "../inc/replace.hpp"
 
 std::string replace_name(std::string file, std::string s1, std::string s2)
 {
@@ -32,6 +32,12 @@ int main(int argc, char **argv)
 	std::string file;
 	std::string line;
 
+	outfile.open(file.c_str());
+	if (!outfile.is_open())
+	{	
+		std::cerr << "Outfile could not be opened or created." << std::endl;
+		return (OPEN_ERROR);
+	}
 	infile.open(argv[1]);
 	if (!infile.is_open())
 	{
@@ -41,12 +47,6 @@ int main(int argc, char **argv)
 	file = replace_name(argv[1], argv[2], argv[3]);
 	if (file.empty())
 		return (REP_ERROR);
-	outfile.open(file.c_str());
-	if (!outfile.is_open())
-	{	
-		std::cerr << "Outfile could not be opened or created." << std::endl;
-		return (OPEN_ERROR);
-	}
 	while (infile.good())
 	{	
 		std::getline(infile, line);
