@@ -1,37 +1,37 @@
-#include "Harl.hpp"
+#include "../inc/Harl.hpp"
 #include <iostream>
 
 Harl::Harl(void)
 {
-	std::cout << "Why did you have to wake me up?" << std::endl;
+	std::cout << "(Harl created) Why did you have to wake me up?" << std::endl;
 }
 
 Harl::~Harl(void)
 {
-	std::cout << "Sorry I have bothered you with my friendship!" << std::endl; 
+	std::cout << "(Harl destroyed) Sorry I have bothered you with my friendship!" << std::endl; 
 }
 
 void Harl::debug(void)
 {	
-	std::cout << "DEBUG:" << std::endl; 
+	std::cout << "[ DEBUG ]" << std::endl; 
 	std::cout << "There's a little bit of code in your spaghetti" << std::endl;
 }
 
 void Harl::info(void)
 {	
-	std::cout << "INFO:" << std::endl; 
+	std::cout << "[ INFO ]" << std::endl; 
 	std::cout << "50 trillions bytes weren't freed. Diagnosis: You are incompetent." << std::endl;
 }
 
 void Harl::warning(void)
 {	
-	std::cout << "WARNING:" << std::endl; 
+	std::cout << "[ WARNING ]" << std::endl; 
 	std::cout << "Are you sure you want to commit that?" << std::endl;
 }
 
 void Harl::error(void)
 {	
-	std::cout << "ERROR:" << std::endl; 
+	std::cout << "[ ERROR ]" << std::endl; 
 	std::cout << "The compiler just got up and left." << std::endl;
 }
 

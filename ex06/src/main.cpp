@@ -1,13 +1,19 @@
-#include "Harl.hpp"
+#include "../inc/Harl.hpp"
 #include <string>
 #include <iostream>
 
-int get_number(char *command)
+int get_number(std::string command)
 {	
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	for (int i = 0; i < 4; i++)
+	for (std::string::iterator it = command.begin(); it != command.end(); ++it)
 	{
+		if (islower(*it))
+			*it = toupper(*it);
+	}
+	for (int i = 0; i < 4; i++)
+	{	
+		
 		if (levels[i] == command)
 			return (i);
 	}
@@ -24,7 +30,7 @@ int main(int argc, char **argv)
 		std::cout << "[Probably complaining about insignificant problems]" << std::endl;
 		return (EXIT_SUCCESS);
 	}
-	n = get_number(argv[1]);
+	n = get_number(std::string(argv[1]));
 	switch (n)
 	{
 		case 0:
