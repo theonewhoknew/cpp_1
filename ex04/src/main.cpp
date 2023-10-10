@@ -3,21 +3,22 @@
 #include <fstream>
 #include "../inc/replace.hpp"
 
-std::string replace_name(std::string file, std::string s1, std::string s2)
-{
-	size_t	pos;
-	size_t	len;
+static void	replace_str(const std::string &occurrence, const std::string &replace, std::ifstream &f1, std::ofstream &f2)
+{	
+	std::string	line;
+	size_t pos;
 
-	pos = file.find(s1);
-	if (pos == (size_t) - 1)
+	while (getline(f1, line))
 	{
-		std::cerr << "No occurrence found in filename." << std::endl;
-		return ("");
+		pos = line.find(occurrence);	
+		while (pos != std::string::npos)
+		{	
+			line = line.erase(pos, occurrence.length());
+			line = line.insert(pos, replace);
+			pos = line.find(occurrence);
+		}
+		f2 << line << std::endl;
 	}
-	len = s1.length();
-	file.erase(pos, len);
-	file.insert(pos, s2);
-	return (file);
 }
 
 int main(int argc, char **argv)
@@ -29,29 +30,24 @@ int main(int argc, char **argv)
 	}
 	std::ifstream infile;
 	std::ofstream outfile;
-	std::string file;
-	std::string line;
+	std::string occurence(argv[2]);
+	std::string replace(argv[3]);
+	std::string outfile_name;
 
-	outfile.open(file.c_str());
-	if (!outfile.is_open())
-	{	
-		std::cerr << "Outfile could not be opened or created." << std::endl;
-		return (OPEN_ERROR);
-	}
 	infile.open(argv[1]);
 	if (!infile.is_open())
 	{
 		std::cerr << "Infile could not be opened or found." << std::endl;
 		return (OPEN_ERROR);
 	}
-	file = replace_name(argv[1], argv[2], argv[3]);
-	if (file.empty())
-		return (REP_ERROR);
-	while (infile.good())
+	outfile_name = std::string(argv[1]) + std::string(".replace");
+	outfile.open(outfile_name);
+	if (!outfile.is_open())
 	{	
-		std::getline(infile, line);
-		outfile << line;
-	}		
+		std::cerr << "Outfile could not be opened or created." << std::endl;
+		return (OPEN_ERROR);
+	}
+	replace_str(occurence, replace, infile, outfile);
 	infile.close();
 	outfile.close();
 	return (EXIT_SUCCESS);
