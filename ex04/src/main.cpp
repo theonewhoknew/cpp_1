@@ -41,7 +41,31 @@ int main(int argc, char **argv)
 		return (OPEN_ERROR);
 	}
 	outfile_name = std::string(argv[1]) + std::string(".replace");
-	outfile.open(outfile_name);
+	
+	std::ifstream check;
+	check.open(outfile_name.c_str());
+	if (check)
+	{	
+		char option;
+		std::cout << "File already exists! Do you want to overwrite it?" << std::endl;
+		while (1) 
+		{
+			printf("Enter 'y' for yes or 'n' for no: ");
+			if (scanf("%c", &option) == 1) 
+			{
+				if (option == 'y' || option == 'n') 
+					break;
+			}
+			printf("Invalid input. Please enter 'y' or 'n'.\n");
+			while (getchar() != '\n');
+    	}
+		if (option == 'n')
+		{
+			std::cout << "Operation cancelled." << std::endl;
+			return (0);
+		}
+	}
+	outfile.open(outfile_name.c_str());
 	if (!outfile.is_open())
 	{	
 		std::cerr << "Outfile could not be opened or created." << std::endl;
