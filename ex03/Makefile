@@ -1,4 +1,4 @@
-NAME = rpg
+NAME = weapon
 SRC = $(addprefix $(DIR_SRC), main.cpp Weapon.cpp HumanA.cpp HumanB.cpp)
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 DEPFLAGS = -MMD -MP

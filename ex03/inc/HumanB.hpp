@@ -9,12 +9,12 @@ private:
 	std::string _name;
 	Weapon* _weapon;
 
-public:	
+public:
 	HumanB(std::string name);
 	~HumanB(void);
+
 	void attack(void);
 	void setWeapon(Weapon &new_weapon);
-	std::string getWeapon(void);
 };
 
 #endif
