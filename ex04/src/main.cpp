@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 		}
 	}
 	outfile.open(outfile_name.c_str());
-	if (!outfile.is_open())
+	if (!outfile)
 	{	
 		std::cerr << "Outfile could not be opened or created." << std::endl;
 		return (OPEN_ERROR);
