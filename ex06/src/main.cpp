@@ -35,10 +35,13 @@ int main(int argc, char **argv)
 	{
 		case 0:
 			instance.complain("DEBUG");
+			// fall through
 		case 1:
 			instance.complain("INFO");
+			// fall through
 		case 2:
 			instance.complain("WARNING");
+			// fall through
 		case 3:
 			instance.complain("ERROR");
 			break;
