@@ -7,18 +7,21 @@ static void	replace_str(const std::string &occurrence, const std::string &replac
 {	
 	std::string	line;
 	size_t pos;
+	int		count = 0;
 
 	while (getline(f1, line))
 	{
 		pos = line.find(occurrence);	
 		while (pos != std::string::npos)
 		{	
+			count++;
 			line = line.erase(pos, occurrence.length());
 			line = line.insert(pos, replace);
 			pos = line.find(occurrence);
 		}
 		f2 << line << std::endl;
 	}
+	std::cout << count << " occurrence(s) found and replaced." << std::endl;
 }
 
 int main(int argc, char **argv)
